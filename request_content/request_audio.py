@@ -13,4 +13,4 @@ async def generate_audio_files(input_text, output_folder, filename, voice = "en-
     await communicate.save(output_file)
 
 
-# asyncio.run(generate_audio_files("hello there", "temp", "temp"))
+asyncio.run(generate_audio_files("hello there, do you have time to talk about your car's extended warrantly? uwu uwu uwuwwuw", "temp", "temp"))

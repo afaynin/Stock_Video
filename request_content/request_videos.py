@@ -63,6 +63,8 @@ def download_video(video, output_dir, filename):
     print(f"Video saved to {file_path}")
 
 
+def create_work_accreditation_file(videos: list):
+    return
 
 def cut_to_size():
     return
