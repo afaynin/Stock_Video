@@ -25,10 +25,10 @@ def get_next_video(video):
         return f"Error: {response.status_code}, {response.text}"
 
 def check16to9ratio(video):
-    
     if video["videos"][0]["width"] % 16 != 0 or video["videos"][0]["width"] % 16 != 0:
         return False
     return True
+
 def timeofvid(video):
     return(video["videos"][0]["duration"])
 def request_timed_vid(required_length, query):
@@ -41,6 +41,7 @@ def request_timed_vid(required_length, query):
             total_vid_time += timeofvid(vid) 
         if total_vid_time < required_length:
             vid = get_next_video(vid)
+    return stored_vids
 
 # def downloadvid(video, directory = "temp"):
 #     videourl = video["videos"][0]["video_files"][0]["link"]
@@ -65,8 +66,13 @@ def download_video(video, output_dir, filename):
 
 def cut_to_size():
     return
-download_video(get_video("nature"), "temp", "temp")
 
+def make_vid(input_text, output_dir, filename, time):
+    vids = request_timed_vid(time, input_text)
+    for i, vid in enumerate(vids):
+        download_video(vid, output_dir, f"{filename}{i}")
+# download_video(get_video("nature"), "temp", "temp")
+make_vid("nature", "temp", "temp")
 # Example Usage
 # videos = get_videos("nature", 1)
 # print(type(videos))
