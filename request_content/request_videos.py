@@ -63,11 +63,10 @@ def download_video(video, output_dir, filename):
     print(f"Video saved to {file_path}")
 
 
-def create_work_accreditation_file(videos: list):
-    return
-
-def cut_to_size():
-    return
+def create_work_accreditation_file(videos: list, directory: str):
+    with open(f"{directory}/accreditation.txt", "w") as file:
+        for i, vid in enumerate(videos):
+            file.write(f"Video #{i} by: {["videos"][0]["user"]["name"]} at {["videos"][0]["user"]["url"]} \n")
 
 def make_vid(input_text, output_dir, filename, time):
     vids = request_timed_vid(time, input_text)
