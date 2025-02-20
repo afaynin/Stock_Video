@@ -2,3 +2,4 @@ myenv/
 temp/
 temp.py
 .ds_store
+**__pycache__/

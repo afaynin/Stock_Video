@@ -73,7 +73,7 @@ def make_vid(input_text, output_dir, filename, time):
     for i, vid in enumerate(vids):
         download_video(vid, output_dir, f"{filename}{i}")
 # download_video(get_video("nature"), "temp", "temp")
-make_vid("nature", "temp", "temp")
+# make_vid("nature", "temp", "temp")
 # Example Usage
 # videos = get_videos("nature", 1)
 # print(type(videos))

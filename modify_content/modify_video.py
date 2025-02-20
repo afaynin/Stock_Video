@@ -7,9 +7,17 @@ def concatenate_mp4_reencode(video_list: list[str], output_file: str):
     # Concatenate clips
     video_list = [VideoFileClip(video) for video in video_list]
     final_clip = concatenate_videoclips(video_list, method="compose")
-
     # Write the output file
     final_clip.write_videofile(f"{output_file}.mp4", codec="libx264", fps=30)
+    return f"{output_file}.mp3"
+
+def concatenate_mp3(audio_list: list[str], directory):
+    # Concatenate clips
+    audio_list= [AudioFileClip(os.path.join(directory, audio)) for audio in audio_list]
+    final_audio = concatenate_audioclips(audio_list)
+    # Write the output file
+    final_audio.write_audiofile(os.path.join(directory, "audio_final.mp3"), codec="libmp3lame")
+    return "audio_final.mp3"
 
 def convert_ratio(video, video_path, convert_to = [2560, 1440]):
     if video["videos"][0]["width"] != convert_to[0] or video["videos"][0]["width"] != convert_to[1]:
@@ -52,6 +60,6 @@ def trim_video_add_audio(video:str, audio:str, path):
 def clean_out(directory: str):
     for file in os.listdir(directory):
         if not (file.endswith("final.mp4") or file.endswith("accreditation.txt")):
-            os.remove(f"{directory}/{file}")
+            os.remove(os.path.join(directory, file))
 # trim_video_add_audio("temp/temp2.mp4", "temp/temp.mp3", "temp/temp22")
-concatenate_mp4_reencode(["temp/temp2.mp4", "temp/temp3.mp4", "temp/temp4.mp4"], "temp/final.mp4")
+# concatenate_mp4_reencode(["temp/temp2.mp4", "temp/temp3.mp4", "temp/temp4.mp4"], "temp/final.mp4")
