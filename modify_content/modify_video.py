@@ -1,6 +1,7 @@
 import ffmpeg
 import os
-from moviepy.editor import *
+from moviepy.editor import * #change this
+#then again if i cared about efficiency i would be running ffmpeg only no moviepy
 
 def concatenate_mp4_reencode(video_list: list[str], output_file: str):
     # Concatenate clips
@@ -49,6 +50,8 @@ def trim_video_add_audio(video:str, audio:str, path):
     trimmed_video.close()
 
 def clean_out(directory: str):
-    for file in os. 
+    for file in os.listdir(directory):
+        if not (file.endswith("final.mp4") or file.endswith("accreditation.txt")):
+            os.remove(f"{directory}/{file}")
 # trim_video_add_audio("temp/temp2.mp4", "temp/temp.mp3", "temp/temp22")
 concatenate_mp4_reencode(["temp/temp2.mp4", "temp/temp3.mp4", "temp/temp4.mp4"], "temp/final.mp4")
