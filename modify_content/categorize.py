@@ -39,7 +39,6 @@ def seperate_text(user_message,
 
 
 def represent_text(user_messages: list[str], 
-                    seperator="|||",
                     system_message="",
                     model="mistral-nemo-instruct-2407", 
                     temperature=0.7):
@@ -53,7 +52,7 @@ def represent_text(user_messages: list[str],
         solar panels rather than global warming, as solar panels represent a physical object.	
         2.	Return a string of up to five words, representing this physical aspect.
         3. Return nothing else, do not return your explanation for your decision
-        4. Do not use any of the following words or a plural version of these words, unless you add an additional word: """
+        4. Do not under any circumstanceees use any of the following words and do not use any slight modifications(i.e. if \"windmill\", do not use \"windmills\") of the following words: """
     print("Starting lm-studio server...")
     os.system("lms server start")
     os.system(f"lms load {model} --identifier \"{model}\"")
