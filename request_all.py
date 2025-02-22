@@ -4,6 +4,7 @@ from modify_content.categorize import seperate_text, represent_text, split_text
 from modify_content.modify_video import concatenate_mp4_reencode, concatenate_mp3
 import argparse
 import asyncio
+import os
 
 parser = argparse.ArgumentParser(description="Place your script which you want to have stock footage added to, more features coming soon!")
 parser.add_argument("--script", type=str, help="Your script")
@@ -22,5 +23,7 @@ for i, segment in enumerate(seperated_text):
    audio_files.append(asyncio.run(generate_audio_files(segment, args.directory, f"audio{i}")))
 print(audio_files)
 concatenate_mp3(audio_files, args.directory)
+request_timed_vid(f"{os.path.join(args.directory, "audio_final.mp3")}")
+
 
 

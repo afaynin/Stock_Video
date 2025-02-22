@@ -40,6 +40,7 @@ def convert_all(video_dir, ratio = [2560, 1440]):
     for vid in os.listdir(video_dir):
         convert(vid, ratio)
 
+
 def trim_video_add_audio(video:str, audio:str, path):
     vid_path = video
     aud_path = audio
