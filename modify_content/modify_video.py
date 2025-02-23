@@ -10,6 +10,9 @@ def concatenate_mp4_reencode(video_list: list[str], output_file: str):
     final_clip = concatenate_videoclips(video_list, method="compose")
     # Write the output file
     final_clip.write_videofile(f"{output_file}.mp4", codec="libx264", fps=30, audio=False)
+    for vid in video_list:
+        vid.close()
+    final_clip.close() 
     return f"{output_file}.mp4"
 
 # def concatenate_final(video_paths, output_path):
@@ -39,7 +42,7 @@ def concatenate_mp4_reencode(video_list: list[str], output_file: str):
     # return output_path
 
 
-def reencode_video(input_path, output_path, target_resolution=(2560, 1440), target_fps=30):
+def reencode_video(input_path, output_path, target_resolution=(3840, 2160), target_fps=30):
     """
     Re-encodes a video to ensure format consistency for concatenation.
     
@@ -175,9 +178,9 @@ def trim_video_add_audio(video:str, audio:str, path):
     os.remove(f"{path}.mp4")
     os.remove(vid_path)
     os.rename(f"{path}_final.mp4", f"{path}.mp4")
-    # video.close()
-    # audio.close()
-    # trimmed_video.close()
+    video.close()
+    audio.close()
+    trimmed_video.close()
     return f"{path}.mp4"
 
 def clean_out(directory: str):

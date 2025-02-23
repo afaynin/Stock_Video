@@ -39,7 +39,10 @@ def check16to9ratio(video):
     # if "width" not in video["videos"][0] or "height" not in video["videos"][0]:
     #     print("Missing width/height keys in video data.")
     #     return False
-    print( video["videos"][0]["width"])
+    # print( video["videos"][0]["width"])
+    if not video:
+        print("failed to find video")
+        return False
     if video["videos"][0]["width"] != 3840 or video["videos"][0]["height"] != 2160:
         return False
     return True
@@ -53,7 +56,7 @@ def request_timed_vid(required_length, query):
 
     vid = get_video(query)
 
-    print(vid)
+    # print(vid)
     emergencystop = 0
     while total_vid_time < required_length:
         if check16to9ratio(vid):

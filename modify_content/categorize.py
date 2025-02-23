@@ -52,7 +52,7 @@ def represent_text(user_messages: list[str],
         solar panels rather than global warming, as solar panels represent a physical object.	
         2.	Return a string of up to five words, representing this physical aspect.
         3. Return nothing else, do not return your explanation for your decision
-        4. Do not under any circumstanceees use any of the following words and do not use any slight modifications(i.e. if \"windmill\", do not use \"windmills\") of the following words: """
+        4. Do not under any circumstances use any of the following words and do not use any slight modifications(i.e. if \"windmill\", do not use \"windmills\") of the following words: """
     print("Starting lm-studio server...")
     os.system("lms server start")
     os.system(f"lms load {model} --identifier \"{model}\"")
@@ -75,6 +75,7 @@ def represent_text(user_messages: list[str],
             responses.append(completion.choices[0].message.content)
             if not is_system_message:
                 system_message += completion.choices[0].message.content + ", "
+            # print(system_message)
 
         # Unload the model after use
         os.system(f"lms unload {model}")
